@@ -12,13 +12,17 @@ SOURCES += main.cpp\
     Ciphering/Perceptron.cpp \
     BitmapForm.cpp \
     ScribbleArea.cpp \
-    Ciphering/PerceptroNetwork.cpp
+    WeightsModel.cpp
 
 HEADERS  += MainWindow.h \
     Ciphering/Perceptron.h \
     BitmapForm.h \
     ScribbleArea.h \
-    Ciphering/PerceptroNetwork.h
+    Letter.h \
+    WeightsModel.h
 
 FORMS    += MainWindow.ui \
     BitmapForm.ui
+
+RESOURCES += \
+    res.qrc

@@ -4,16 +4,18 @@
 
 namespace irec
 {
-    class Perceptron : public QObject
+    class Perceptron
     {
-        Q_OBJECT
     public:
-        explicit Perceptron(int width, int height, int limit, QObject *parent = 0);
+        explicit Perceptron(int width, int height, int limit);
+        Perceptron();
 
-        void learnRight(QList<QList<int>> sample);
-        void learnWrong(QList<QList<int>> sample);
+        void learnRight(const QList<QList<int>>& sample, double speed);
+        void learnWrong(const QList<QList<int>>& sample, double speed);
 
-        bool recognize(QList<QList<int>> sample);
+        bool recognize(const QList<QList<int>>& sample) const;
+
+        QList<QList<int>> weights() const;
 
     private:
         QList<QList<int>> _weights;

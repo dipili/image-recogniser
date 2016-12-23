@@ -1,22 +1,43 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+namespace irec
 {
-    Q_OBJECT
+    struct Letter;
+    class Perceptron;
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    class MainWindow : public QMainWindow
+    {
+        Q_OBJECT
 
-private:
-    Ui::MainWindow *ui;
-};
+    public:
+        explicit MainWindow(QWidget* parent = 0);
+        ~MainWindow();
 
-#endif // MAINWINDOW_H
+        QList<QList<int> > getImageMatrix(const QImage& image);
+
+    private:
+        void initializePerceptrons();
+        QString recognizeLetter(QList<QList<int>> sample);
+
+    private slots:
+        void on_symbolComboBox_currentIndexChanged(int index);
+        void on_recognisePushButton_clicked();
+        void on_learnPushButton_clicked();
+        void on_updateRefPushButton_clicked();
+
+    private:
+        Ui::MainWindow* _ui;
+
+        QStatusBar* _statusBar;
+
+        QList<Letter> _letters;
+        QList<Perceptron> _perceptrons;
+    };
+}
