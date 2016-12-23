@@ -40,6 +40,7 @@ namespace irec
         {
             bool canFinsh = false;
 
+            int curEpoch = 0;
             while (!canFinsh)
             {
                 canFinsh = true;
@@ -51,7 +52,15 @@ namespace irec
                         canFinsh = false;
 
                         while (!_perceptrons.at(i).recognize(_letters.at(i).image))
+                        {
                             _perceptrons[i].learnRight(_letters.at(i).image, _ui->speedSpinBox->value());
+
+                            if (++curEpoch > _ui->epochSpinBox->value())
+                            {
+                                canFinsh = true;
+                                break;
+                            }
+                        }
                     }
                 }
 
@@ -69,6 +78,9 @@ namespace irec
                         }
                     }
                 }
+
+                if (++curEpoch > _ui->epochSpinBox->value())
+                    break;
             }
         }
 
