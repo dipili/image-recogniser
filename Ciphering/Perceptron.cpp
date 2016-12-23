@@ -42,8 +42,7 @@ namespace irec
 
         for (int i = 0; i < sample.length(); i++)
         {
-            int jEnds = sample.at(i).length();
-            for (int j = 0; j < jEnds; j++)
+            for (int j = 0; j < sample.at(i).length(); j++)
                 sum += sample[i][j] * _weights[i][j];
         }
 
