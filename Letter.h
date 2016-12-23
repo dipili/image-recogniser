@@ -9,7 +9,7 @@ namespace irec
         QString name;
         QString imageFile;
 
-        QList<QList<int>> image;
+        QList<QList<double>> image;
 
         Letter(QString name, QString imageFile)
         {

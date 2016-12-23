@@ -9,7 +9,7 @@ class WeightsModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    explicit WeightsModel(QList<QList<int>> weights, QObject *parent = 0);
+    explicit WeightsModel(QList<QList<double>> weights, QObject *parent = 0);
 
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
@@ -19,7 +19,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    QList<QList<int>> _weights;
+    QList<QList<double>> _weights;
 };
 }
 

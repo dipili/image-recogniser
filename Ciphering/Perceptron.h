@@ -10,15 +10,15 @@ namespace irec
         explicit Perceptron(int width, int height, int limit);
         Perceptron();
 
-        void learnRight(const QList<QList<int>>& sample, double speed);
-        void learnWrong(const QList<QList<int>>& sample, double speed);
+        void learnRight(const QList<QList<double> > &sample, double speed);
+        void learnWrong(const QList<QList<double>>& sample, double speed);
 
-        bool recognize(const QList<QList<int>>& sample) const;
+        bool recognize(const QList<QList<double>>& sample) const;
 
-        QList<QList<int>> weights() const;
+        QList<QList<double>> weights() const;
 
     private:
-        QList<QList<int>> _weights;
+        QList<QList<double>> _weights;
         int _limit;
     };
 }

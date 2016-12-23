@@ -6,7 +6,7 @@ namespace irec
     {
         for (int i = 0; i < width; i++)
         {
-            _weights.append(QList<int>());
+            _weights.append(QList<double>());
             for (int j = 0; j < height; j++)
                 _weights[i].append(0);
         }
@@ -16,16 +16,18 @@ namespace irec
     {
     }
 
-    void Perceptron::learnRight(const QList<QList<int>>& sample, double speed)
+    void Perceptron::learnRight(const QList<QList<double>>& sample, double speed)
     {
         for (int i = 0; i < sample.length(); i++)
         {
             for (int j = 0; j < sample.at(0).length(); j++)
+            {
                 _weights[i][j] += sample[i][j] * speed;
+            }
         }
     }
 
-    void Perceptron::learnWrong(const QList<QList<int>>& sample, double speed)
+    void Perceptron::learnWrong(const QList<QList<double> > &sample, double speed)
     {
         for (int i = 0; i < sample.length(); i++)
         {
@@ -34,7 +36,7 @@ namespace irec
         }
     }
 
-    bool Perceptron::recognize(const QList<QList<int>>& sample) const
+    bool Perceptron::recognize(const QList<QList<double>>& sample) const
     {
         int sum = 0;
 
@@ -48,7 +50,7 @@ namespace irec
         return sum >= _limit;
     }
 
-    QList<QList<int> > Perceptron::weights() const
+    QList<QList<double> > Perceptron::weights() const
     {
         return _weights;
     }

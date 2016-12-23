@@ -20,11 +20,11 @@ namespace irec
         explicit MainWindow(QWidget* parent = 0);
         ~MainWindow();
 
-        QList<QList<int> > getImageMatrix(const QImage& image);
+        QList<QList<double>> getImageMatrix(const QImage& image);
 
     private:
         void initializePerceptrons();
-        QString recognizeLetter(QList<QList<int>> sample);
+        QString recognizeLetter(QList<QList<double>> sample);
 
     private slots:
         void on_symbolComboBox_currentIndexChanged(int index);

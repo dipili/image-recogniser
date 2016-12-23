@@ -13,12 +13,12 @@
 
 namespace irec
 {
-    QList<QList<int>> MainWindow::getImageMatrix(const QImage& image)
+    QList<QList<double>> MainWindow::getImageMatrix(const QImage& image)
     {
-        QList<QList<int>> parsedImage;
+        QList<QList<double>> parsedImage;
         for (int i = 0; i < image.width(); ++i)
         {
-            parsedImage.append(QList<int>());
+            parsedImage.append(QList<double>());
             for (int j = 0; j < image.height(); ++j)
                 parsedImage[i].append(QColor(image.pixel(i, j)).red() == 0 ? 0 : 1);
         }
@@ -110,7 +110,7 @@ namespace irec
 
         for (int l = 0; l < _letters.length(); ++l)
         {
-            QList<QList<int>> parsedImage = getImageMatrix(QImage(_letters.at(l).imageFile));
+            QList<QList<double>> parsedImage = getImageMatrix(QImage(_letters.at(l).imageFile));
             _letters[l].image = parsedImage;
         }
 
@@ -125,7 +125,7 @@ namespace irec
         delete _ui;
     }
 
-    QString MainWindow::recognizeLetter(QList<QList<int>> sample)
+    QString MainWindow::recognizeLetter(QList<QList<double>> sample)
     {
         for (int i = 0; i < _perceptrons.length(); ++i)
         {

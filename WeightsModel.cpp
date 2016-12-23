@@ -2,7 +2,7 @@
 
 namespace irec
 {
-    WeightsModel::WeightsModel(QList<QList<int>> weights, QObject* parent)
+    WeightsModel::WeightsModel(QList<QList<double>> weights, QObject* parent)
         : QAbstractTableModel(parent), _weights(weights)
     {
     }
