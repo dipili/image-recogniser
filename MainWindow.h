@@ -9,8 +9,7 @@ namespace Ui
 
 namespace irec
 {
-    struct Letter;
-    class Perceptron;
+    class NeuralNetwork;
 
     class MainWindow : public QMainWindow
     {
@@ -20,13 +19,6 @@ namespace irec
         explicit MainWindow(QWidget* parent = nullptr);
         ~MainWindow();
 
-        QList<QList<double>> getImageMatrix(const QImage& image);
-
-    private:
-        void initializePerceptrons();
-        QString recognizeLetter(const QList<QList<double>>& sample);
-        void trainRight(int curEpoch, bool canFinsh, int i);
-
     private slots:
         void on_symbolComboBox_currentIndexChanged(int index);
         void on_recognisePushButton_clicked();
@@ -35,10 +27,8 @@ namespace irec
 
     private:
         Ui::MainWindow* _ui;
-
         QStatusBar* _statusBar;
 
-        QList<Letter> _letters;
-        QList<Perceptron> _perceptrons;
+        NeuralNetwork* _neuralNetwork;
     };
 }
