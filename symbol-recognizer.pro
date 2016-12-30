@@ -7,15 +7,17 @@ TARGET = symbol-recognizer
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        MainWindow.cpp \
-    Ciphering/Perceptron.cpp \
+SOURCES += \
+    main.cpp\
+    MainWindow.cpp \
+    Perceptron.cpp \
     BitmapForm.cpp \
     ScribbleArea.cpp \
     WeightsModel.cpp
 
-HEADERS  += MainWindow.h \
-    Ciphering/Perceptron.h \
+HEADERS  += \
+    MainWindow.h \
+    Perceptron.h \
     BitmapForm.h \
     ScribbleArea.h \
     Letter.h \

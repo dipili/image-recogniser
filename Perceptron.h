@@ -7,7 +7,7 @@ namespace irec
     class Perceptron
     {
     public:
-        explicit Perceptron(int width, int height, int limit);
+        explicit Perceptron(int width, int height, double limit);
         Perceptron();
 
         void learnRight(const QList<QList<double> > &sample, double speed);
@@ -19,6 +19,6 @@ namespace irec
 
     private:
         QList<QList<double>> _weights;
-        int _limit;
+        double _limit;
     };
 }

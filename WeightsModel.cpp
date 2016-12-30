@@ -7,17 +7,12 @@ namespace irec
     {
     }
 
-    QVariant WeightsModel::headerData(int section, Qt::Orientation orientation, int role) const
-    {
-        return QVariant();
-    }
-
-    int WeightsModel::rowCount(const QModelIndex& parent) const
+    int WeightsModel::rowCount(const QModelIndex&) const
     {
         return _weights.length();
     }
 
-    int WeightsModel::columnCount(const QModelIndex& parent) const
+    int WeightsModel::columnCount(const QModelIndex&) const
     {
         return _weights.at(0).length();
     }

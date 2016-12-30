@@ -13,7 +13,7 @@ namespace irec
         Q_OBJECT
 
     public:
-        explicit BitmapForm(QWidget *parent = 0);
+        explicit BitmapForm(QWidget *parent = nullptr);
         ~BitmapForm();
 
         bool openImage(const QString &fileName);

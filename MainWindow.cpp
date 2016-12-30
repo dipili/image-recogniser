@@ -7,7 +7,7 @@
 #include <QStatusBar>
 
 #include "BitmapForm.h"
-#include "Ciphering/Perceptron.h"
+#include "Perceptron.h"
 #include "Letter.h"
 #include "WeightsModel.h"
 
@@ -32,7 +32,7 @@ namespace irec
 
         foreach (Letter letter, _letters)
         {
-            Perceptron perceptron(36, 36, 9);
+            Perceptron perceptron(36, 36, 0.2);
             _perceptrons.append(perceptron);
         }
 
@@ -45,25 +45,24 @@ namespace irec
             {
                 canFinsh = true;
 
+                // training to recognize the right value
+                if (!_perceptrons.at(i).recognize(_letters.at(i).image))
                 {
-                    bool recognized = _perceptrons.at(i).recognize(_letters.at(i).image);
-                    if (!recognized)
+                    canFinsh = false;
+
+                    while (!_perceptrons.at(i).recognize(_letters.at(i).image))
                     {
-                        canFinsh = false;
+                        _perceptrons[i].learnRight(_letters.at(i).image, _ui->speedSpinBox->value());
 
-                        while (!_perceptrons.at(i).recognize(_letters.at(i).image))
+                        if (++curEpoch > _ui->epochSpinBox->value())
                         {
-                            _perceptrons[i].learnRight(_letters.at(i).image, _ui->speedSpinBox->value());
-
-                            if (++curEpoch > _ui->epochSpinBox->value())
-                            {
-                                canFinsh = true;
-                                break;
-                            }
+                            canFinsh = true;
+                            break;
                         }
                     }
                 }
 
+                // training to not recognize wrong values
                 for (int j = 0; j < _perceptrons.length(); ++j)
                 {
                     if (i != j)
@@ -125,7 +124,7 @@ namespace irec
         delete _ui;
     }
 
-    QString MainWindow::recognizeLetter(QList<QList<double>> sample)
+    QString MainWindow::recognizeLetter(const QList<QList<double> > &sample)
     {
         for (int i = 0; i < _perceptrons.length(); ++i)
         {
@@ -162,4 +161,6 @@ void irec::MainWindow::on_updateRefPushButton_clicked()
 
     _perceptrons.clear();
     initializePerceptrons();
+
+    _ui->tableView->setModel(new WeightsModel(_perceptrons.at(_ui->symbolComboBox->currentIndex()).weights()));
 }

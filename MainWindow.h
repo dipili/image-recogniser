@@ -17,14 +17,15 @@ namespace irec
         Q_OBJECT
 
     public:
-        explicit MainWindow(QWidget* parent = 0);
+        explicit MainWindow(QWidget* parent = nullptr);
         ~MainWindow();
 
         QList<QList<double>> getImageMatrix(const QImage& image);
 
     private:
         void initializePerceptrons();
-        QString recognizeLetter(QList<QList<double>> sample);
+        QString recognizeLetter(const QList<QList<double>>& sample);
+        void trainRight(int curEpoch, bool canFinsh, int i);
 
     private slots:
         void on_symbolComboBox_currentIndexChanged(int index);

@@ -9,25 +9,16 @@ namespace irec
         Q_OBJECT
 
     public:
-        ScribbleArea(QWidget* parent = 0);
+        ScribbleArea(QWidget* parent = nullptr);
 
         bool openImage(const QString& fileName);
         bool saveImage(const QString& fileName, const char* fileFormat);
         void setPenColor(const QColor& newColor);
         void setPenWidth(int newWidth);
 
-        bool isModified() const
-        {
-            return modified;
-        }
-        QColor penColor() const
-        {
-            return myPenColor;
-        }
-        int penWidth() const
-        {
-            return myPenWidth;
-        }
+        bool isModified() const;
+        QColor penColor() const;
+        int penWidth() const;
 
         QImage getImage() const;
 
@@ -44,13 +35,14 @@ namespace irec
 
     private:
         void drawLineTo(const QPoint& endPoint);
-        void resizeImage(QImage* image, const QSize& newSize);
+        void resizeImage(QImage* _image, const QSize& newSize);
 
-        bool modified;
-        bool scribbling;
-        int myPenWidth;
-        QColor myPenColor;
-        QImage image;
-        QPoint lastPoint;
+    private:
+        bool _modified;
+        bool _scribbling;
+        int _penWidth;
+        QColor _penColor;
+        QImage _image;
+        QPoint _lastPoint;
     };
 }
