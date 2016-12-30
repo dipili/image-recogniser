@@ -14,4 +14,10 @@ namespace irec
 
         return parsedImage;
     }
+
+    double rand(double fMin, double fMax)
+    {
+        double f = (double)random() / RAND_MAX;
+        return fMin + f * (fMax - fMin);
+    }
 }

@@ -1,15 +1,10 @@
 #include "Perceptron.h"
 
 #include "qmath.h"
+#include "Utils.h"
 
 namespace irec
 {
-    double rand(double fMin, double fMax)
-    {
-        double f = (double)random() / RAND_MAX;
-        return fMin + f * (fMax - fMin);
-    }
-
     Perceptron::Perceptron(int width, int height, double limit) : _limit(limit)
     {
         for (int i = 0; i < width; i++)
